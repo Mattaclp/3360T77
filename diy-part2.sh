@@ -13,7 +13,8 @@
 #luci-app-alist
 rm -rf feeds/packages/lang/golang
 svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/luci-app-alist package/alist
+svn co https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/luci-app-alist
+svn co https://github.com/sbwml/luci-app-alist/trunk/alist package/alist
 
 # rm packages
 #rm -rf feeds/luci/applications/luci-app-ssr-plus/
