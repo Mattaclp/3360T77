@@ -54,9 +54,6 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt && make defconfig
-        rm -rf feeds/packages/lang/golang
-        svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
-        git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
         
     - name: Download package
       working-directory: ./openwrt
@@ -64,6 +61,13 @@ jobs:
         make download -j$(nproc)
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        
+    - name: Download Alist
+      working-directory: ./openwrt
+      run: |
+       rm -rf feeds/packages/lang/golang
+       svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+       git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
         
     - name: Build firmware
       working-directory: ./openwrt
