@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: 360T7-3test
+name: 360t7-3test
 
 on:
   workflow_dispatch:
@@ -37,7 +37,6 @@ jobs:
       env: 
         REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
         REPO_BRANCH: openwrt-21.02
-        DIY_P2_SH: customize.sh
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
@@ -52,11 +51,13 @@ jobs:
       env:
         CONFIG_FILE: 'config/360t7.config'
       run: |
-        [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+        chmod +x ./customize.sh && ./customize.sh
+        cd openwrt && make defconfig
+        rm -rf feeds/packages/lang/golang
+        svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+        git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
+        
     - name: Download package
       working-directory: ./openwrt
       run: |
