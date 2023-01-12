@@ -52,11 +52,11 @@ jobs:
       env:
         CONFIG_FILE: 'config/360t7.config'
       run: |
+        [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
-        cd openwrt && make defconfig
+        cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
-        
     - name: Download package
       working-directory: ./openwrt
       run: |
