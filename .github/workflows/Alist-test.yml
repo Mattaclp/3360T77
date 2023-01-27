@@ -51,7 +51,7 @@ jobs:
    
     - name: Configuration Customization
       env:
-        CONFIG_FILE: 'config/360t7.config'
+        CONFIG_FILE: 'config/alist-test.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
