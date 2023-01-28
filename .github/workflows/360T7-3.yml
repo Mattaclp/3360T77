@@ -12,8 +12,8 @@ name: OpenWrt firmware immortalwrt-mt798x 360t7
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0 21 * * 5
+#  schedule:
+#    - cron: 0 21 * * 5
 
 jobs:
   build:
