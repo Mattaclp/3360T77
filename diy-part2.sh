@@ -10,9 +10,9 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
-rm -rf feeds/packages/lang/golang
-svn export https://github.com/sbwml/packages_lang_golang/trunk feeds/packages/lang/golang
+#git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
+#rm -rf feeds/packages/lang/golang
+#svn export https://github.com/sbwml/packages_lang_golang/trunk feeds/packages/lang/golang
 
 # rm packages
 #rm -rf feeds/luci/applications/luci-app-ssr-plus/
